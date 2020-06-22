@@ -1457,7 +1457,7 @@ $EndComp
 Wire Wire Line
 	13400 6800 13400 6750
 Text GLabel 11350 6250 0    50   Input ~ 0
-SW_5_STACK
+SW_5_ENABLE
 Wire Wire Line
 	11350 6250 11600 6250
 Connection ~ 11600 6250
@@ -3620,7 +3620,7 @@ Wire Wire Line
 Wire Wire Line
 	15600 5300 15600 5750
 Text GLabel 7600 4550 2    39   Output ~ 0
-SW_5_STACK
+SW_5_ENABLE
 Text GLabel 7600 3950 2    39   Input ~ 0
 USB_RESET
 $Comp
@@ -3745,11 +3745,11 @@ Wire Wire Line
 	11700 2900 11700 2950
 Connection ~ 11700 2950
 Text GLabel 7600 2650 2    39   Output ~ 0
-SW_24_STACK
+SW_24_ENABLE
 Text GLabel 7600 2550 2    39   Input ~ 0
 SW_24_CUR
 Text GLabel 11350 3300 0    50   Input ~ 0
-SW_24_STACK
+SW_24_ENABLE
 Wire Wire Line
 	14550 1100 14550 1200
 Wire Wire Line
