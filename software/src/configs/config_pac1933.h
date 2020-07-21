@@ -1,7 +1,7 @@
 /* tng-hub
  * Copyright (C) 2020 Olaf Lüke <olaf@tinkerforge.com>
  *
- * config_hub.h: Configuration TNG Hub
+ * config_pac1933.h: Configuration PAC1933 energy monitor
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -19,28 +19,24 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#ifndef CONFIG_HUB_H
-#define CONFIG_HUB_H
+#ifndef CONFIG_PAC1933_H
+#define CONFIG_PAC1933_H
 
-#define HUB_LED_R_PIN          GPIO_PIN_8
-#define HUB_LED_R_PORT         GPIOA
-#define HUB_LED_G_PIN          GPIO_PIN_9
-#define HUB_LED_G_PORT         GPIOA
-#define HUB_LED_B_PIN          GPIO_PIN_10
-#define HUB_LED_B_PORT         GPIOA
-#define HUB_LED_DEBUG_PIN      GPIO_PIN_3
-#define HUB_LED_DEBUG_PORT     GPIOA
+#define PAC1933_ADDRESS      0b00111110
 
-#define HUB_SW_24_CUR_PIN      GPIO_PIN_0
-#define HUB_SW_24_CUR_PORT     GPIOA
-#define HUB_SW_24_ENABLE_PIN   GPIO_PIN_1
-#define HUB_SW_24_ENABLE_PORT  GPIOA
-#define HUB_SW_5_ENABLE_PIN    GPIO_PIN_2
-#define HUB_SW_5_ENABLE_PORT   GPIOB
+#define PAC1933_RCC_CLK      RCC_PERIPHCLK_I2C2
+#define PAC1933_SYS_CLK      RCC_I2C2CLKSOURCE_SYSCLK
 
-#define HUB_PAC_SDA_PIN        GPIO_PIN_11
-#define HUB_PAC_SDA_PORT       GPIOB
-#define HUB_PAC_SCL_PIN        GPIO_PIN_13
-#define HUB_PAC_SCL_PORT       GPIOB
+#define PAC1933_SDA_PIN      GPIO_PIN_11
+#define PAC1933_SDA_PORT     GPIOB
+#define PAC1933_SDA_AF       GPIO_AF1_I2C2
+#define PAC1933_SCL_PIN      GPIO_PIN_13
+#define PAC1933_SCL_PORT     GPIOB
+#define PAC1933_SCL_AF       GPIO_AF5_I2C2
+
+#define PAC1933_TIMING       0xb0240F13  // 100kHz
+//#define PAC1933_SMB_TIMING       0x50330309  // 400kHz
+#define PAC1933_INSTANCE     I2C2
+#define PAC1933_TIMEOUT      1000
 
 #endif

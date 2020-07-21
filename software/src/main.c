@@ -1,5 +1,5 @@
 /* tng-hub
- * Copyright (C) 2019 Olaf Lüke <olaf@tinkerforge.com>
+ * Copyright (C) 2019-2020 Olaf Lüke <olaf@tinkerforge.com>
  *
  * main.c: Initialization for TNG-HUB
  *
@@ -24,15 +24,21 @@
 #include "bricklib2/tng/tng.h"
 #include "bricklib2/logging/logging.h"
 #include "hub.h"
+#include "usb2517.h"
+#include "pac1933.h"
 
 int main(void) {
 	logging_init();
 	logd("Start TNG-HUB\n\r");
 
 	hub_init();
+	usb2517_init();
+	pac1933_init();
 
 	while(true) {
 		hub_tick();
 		tng_tick();
+		usb2517_tick();
+		pac1933_tick();
 	}
 }

@@ -1,7 +1,7 @@
 /* tng-hub
  * Copyright (C) 2020 Olaf Lüke <olaf@tinkerforge.com>
  *
- * config_hub.h: Configuration TNG Hub
+ * pac1933.h: Driver for PAC1933 energy monitor
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -19,28 +19,20 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#ifndef CONFIG_HUB_H
-#define CONFIG_HUB_H
+#ifndef PAC1933_H
+#define PAC1933_H
 
-#define HUB_LED_R_PIN          GPIO_PIN_8
-#define HUB_LED_R_PORT         GPIOA
-#define HUB_LED_G_PIN          GPIO_PIN_9
-#define HUB_LED_G_PORT         GPIOA
-#define HUB_LED_B_PIN          GPIO_PIN_10
-#define HUB_LED_B_PORT         GPIOA
-#define HUB_LED_DEBUG_PIN      GPIO_PIN_3
-#define HUB_LED_DEBUG_PORT     GPIOA
+#include "configs/config.h"
 
-#define HUB_SW_24_CUR_PIN      GPIO_PIN_0
-#define HUB_SW_24_CUR_PORT     GPIOA
-#define HUB_SW_24_ENABLE_PIN   GPIO_PIN_1
-#define HUB_SW_24_ENABLE_PORT  GPIOA
-#define HUB_SW_5_ENABLE_PIN    GPIO_PIN_2
-#define HUB_SW_5_ENABLE_PORT   GPIOB
+#include <stdint.h>
 
-#define HUB_PAC_SDA_PIN        GPIO_PIN_11
-#define HUB_PAC_SDA_PORT       GPIOB
-#define HUB_PAC_SCL_PIN        GPIO_PIN_13
-#define HUB_PAC_SCL_PORT       GPIOB
+typedef struct {
+	I2C_HandleTypeDef i2c;
+} PAC1933;
+
+extern PAC1933 pac1933;
+
+void pac1933_tick(void);
+void pac1933_init(void);
 
 #endif

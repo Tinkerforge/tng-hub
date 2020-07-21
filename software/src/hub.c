@@ -44,10 +44,11 @@ void hub_init(void) {
 		.Speed = GPIO_SPEED_FREQ_LOW
 	};
 
+/*
 	gpio_out.Pin = GPIO_PIN_14;
 	HAL_GPIO_Init(GPIOA, &gpio_out);
 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_14, GPIO_PIN_SET);
-
+*/
 	gpio_out.Pin = GPIO_PIN_8;
 	HAL_GPIO_Init(GPIOA, &gpio_out);
 
@@ -56,12 +57,26 @@ void hub_init(void) {
 
 	gpio_out.Pin = GPIO_PIN_10;
 	HAL_GPIO_Init(GPIOA, &gpio_out);
+
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8,  GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9,  GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, GPIO_PIN_SET);
+
+	gpio_out.Pin = HUB_SW_24_ENABLE_PIN;
+	HAL_GPIO_Init(HUB_SW_24_ENABLE_PORT, &gpio_out);
+
+	gpio_out.Pin = HUB_SW_5_ENABLE_PIN;
+	HAL_GPIO_Init(HUB_SW_5_ENABLE_PORT, &gpio_out);
+
+	HAL_GPIO_WritePin(HUB_SW_5_ENABLE_PORT, HUB_SW_5_ENABLE_PIN, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(HUB_SW_24_ENABLE_PORT, HUB_SW_24_ENABLE_PIN, GPIO_PIN_SET);
 }
 
 inline void hub_tick(void) {
 	static uint32_t last_time = 0;
 	static uint32_t led_counter = 0;
 
+#if 0
 	if(system_timer_is_time_elapsed_ms(last_time, 500)) {
 		last_time = system_timer_get_ms();
 		switch(led_counter % 3) {
@@ -69,6 +84,9 @@ inline void hub_tick(void) {
 				HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8,  GPIO_PIN_RESET);
 				HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9,  GPIO_PIN_SET);
 				HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, GPIO_PIN_SET);
+				
+				//HAL_GPIO_WritePin(HUB_SW_5_ENABLE_PORT, HUB_SW_5_ENABLE_PIN, GPIO_PIN_RESET);
+				//HAL_GPIO_WritePin(HUB_SW_24_ENABLE_PORT, HUB_SW_24_ENABLE_PIN, GPIO_PIN_RESET);
 				break;
 			}
 
@@ -76,6 +94,9 @@ inline void hub_tick(void) {
 				HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8,  GPIO_PIN_SET);
 				HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9,  GPIO_PIN_RESET);
 				HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, GPIO_PIN_SET);
+
+				//HAL_GPIO_WritePin(HUB_SW_5_ENABLE_PORT, HUB_SW_5_ENABLE_PIN, GPIO_PIN_SET);
+				//HAL_GPIO_WritePin(HUB_SW_24_ENABLE_PORT, HUB_SW_24_ENABLE_PIN, GPIO_PIN_SET);
 				break;
 			}
 
@@ -89,4 +110,5 @@ inline void hub_tick(void) {
 
 		led_counter++;
 	}
+#endif
 }
